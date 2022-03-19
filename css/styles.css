@@ -1,0 +1,293 @@
+:root{
+    --background-color: #ccefff;
+    --wall-color: #db6713;
+    --grass-color: #25990d;
+    --bunny-color: #f6f6f6;
+    --bunny-ear-color: #f8b9cc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.phone {
+    position: relative;
+    border: 8px solid #000;
+    border-radius: 40px;
+    width: 300px;
+    height: 600px;
+    background: var(--background-color);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+    0 15px 12px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+}
+
+.phone > div {
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0px 25px 28px 9px rgba(0, 0, 0, 0.6);
+}
+
+.header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #a64935;
+    font-size: 16px;
+    font-family: cursive;
+}
+
+.title{
+    width: 70%;
+    margin: 10px;
+}
+
+.title__img{
+    width: 100%;
+}
+
+.game-description {
+    font-size: inherit;
+}
+
+.score{
+    margin: 10px;
+    text-align: center;
+    font-size: inherit;
+}
+
+.start-btn {
+    display: block;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #a74a37;
+    color: var(--background-color);
+    transition: 200ms; 
+}
+
+.start-btn:hover {
+    transform: scale(1.2);
+}
+
+
+.bunny {
+    width: 80px;
+    border-radius: 40px;
+    transform: translateY(20px);
+    background-color: var(--bunny-color);
+    animation-name: hide_and_peek;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+/* Bunny eyes */
+.bunny::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    width: 4px;
+    height:4px;
+    border-radius: 50%;
+    background: gray;
+    animation-name: blink;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.bunny::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    width: 4px;
+    height:4px;
+    border-radius: 50%;
+    background: gray;
+    animation-name: blink;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+/*---------------*/
+
+.bunny__btn {
+    width: 100%;
+    height: 40px;
+    opacity: 0;
+}
+
+.bunny__ear {
+    position: absolute;
+    top: -25px;
+    width: 20px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: inherit;
+    z-index: -1;
+}
+
+/* Inner ear  */
+.bunny__ear::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 10px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #ffc0cb;
+}
+
+.bunny__ear.left {
+    left: 10px;
+}
+
+.bunny__ear.right {
+    right: 10px;
+}
+
+.wall {
+    background-color: var(--wall-color);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.wall::before {
+    position: absolute;
+    content: "";
+    z-index: 10;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(135deg, var(--grass-color) 25%, transparent 25%) -50px 0,
+            linear-gradient(-135deg, var(--grass-color) 25%, transparent 25%) -50px 0,
+            linear-gradient(45deg, var(--wall-color) 25%, transparent 25%),
+            linear-gradient(-45deg, var(--wall-color) 25%, #99480d 25%);
+    background-size: 33px 40px;
+    background-repeat: repeat-x;
+}
+
+.bush {
+    background-color: var(--grass-color);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+/* Bush branches */
+.bush::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -30px;
+    width: 50px;
+    height: 60%;
+    background: inherit;
+    border-radius: 25px;
+}
+
+.bush::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -30px;
+    width: 60px;
+    height: 60%;
+    background: inherit;
+    border-radius: 25px;
+}
+/*---------------*/
+
+.bush.light{
+    background-color: var(--bunny-color);
+}
+
+.layer-1 {
+    z-index: 1;
+    height: 400px;
+    right: 60px;
+    animation-duration: 1s;
+}
+
+
+.layer-2 {
+    z-index: 2;
+    height: 400px;
+    left: 60px;
+    animation-duration: 1.5s;
+}
+
+.layer-3 {
+    z-index: 3;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 220px;
+    height: 350px;
+}
+.layer-4 {
+    z-index: 4;
+    height: 290px;
+    left: 50px;
+    animation-duration: 0.5s;
+}
+
+.layer-5 { 
+    z-index: 5;
+    left: 0;
+    width: 220px;
+    height: 240px;
+}
+
+.layer-6 {
+    z-index: 6;
+    height: 200px;
+    right: 40px;
+    animation-duration: 2s;
+}
+
+.layer-7 {
+    z-index: 7;
+    right: 0;
+    width: 170px;
+    height: 150px;
+}
+
+.layer-8 {
+    z-index: 8;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 90px;
+    height: 100px;
+}
+
+.layer-9 {
+    z-index: 9;
+    left: 0;
+    width: 75px;
+    height: 75px;
+}
+
+.layer-10 {
+    z-index: 10;
+    right: 0;
+    width: 75px;
+    height: 75px;
+}
+
+.animation-off {
+    animation: none;
+}
